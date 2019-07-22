@@ -1,6 +1,10 @@
 {
   "v2": {
     "transposit": {
+      "dependencies": [{
+        "name": "transposit/okta:v1.*.*",
+        "alias": "okta"
+      }],
       "operations": [{
         "id": "hello_world",
         "description": "Returns \"Hello, world\" in different languages",
