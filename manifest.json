@@ -13,6 +13,10 @@
       }, {
         "id": "expire_password",
         "tql": {
+          "parameters": [{
+            "name": "id",
+            "type": "STRING"
+          }],
           "tql": "SELECT * FROM okta.expire_password\n  WHERE userId=@id\n  AND tempPassword=true\n"
         }
       }, {
