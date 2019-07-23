@@ -6,13 +6,26 @@
         "alias": "okta"
       }],
       "operations": [{
-        "id": "hello_world",
-        "description": "Returns \"Hello, world\" in different languages",
+        "id": "list_users",
+        "tql": {
+          "tql": "SELECT id FROM okta.list_users\n"
+        }
+      }, {
+        "id": "expire_password",
+        "tql": {
+          "tql": "SELECT * FROM okta.expire_password\n  WHERE userId=@id\n  AND tempPassword=true\n"
+        }
+      }, {
+        "id": "webhook",
         "function": {
-          "js": "hello_world.js"
-        },
-        "access": {
-          "requireUser": true
+          "parameters": [{
+            "name": "http_event",
+            "default": {
+              "text": "{\"http_method\": \"GET\", \"query_parameters\": {}, \"headers\": {}, \"body\": \"\"}"
+            },
+            "type": "OBJECT"
+          }],
+          "js": "webhook.js"
         }
       }],
       "dataConnections": [{
