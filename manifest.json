@@ -15,6 +15,16 @@
           "requireUser": true
         }
       }],
+      "dataConnections": [{
+        "ref": "okta.raw",
+        "overrides": {
+          "swagger": {
+            "baseUrl": "https://dev-470144-admin.okta.com",
+            "executionLimits": {
+            }
+          }
+        }
+      }],
       "javascriptAPIVersion": "3",
       "source": "src",
       "userSettingsDisplay": "GENERATED"
