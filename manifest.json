@@ -33,6 +33,10 @@
             "type": "OBJECT"
           }],
           "js": "webhook.js"
+        },
+        "access": {
+          "requireApiKey": true,
+          "webhook": true
         }
       }],
       "dataConnections": [{
