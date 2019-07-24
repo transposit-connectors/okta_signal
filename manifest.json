@@ -16,9 +16,6 @@
           "parameters": [{
             "name": "id",
             "type": "STRING"
-          }, {
-            "name": "tf",
-            "type": "STRING"
           }],
           "tql": "SELECT * FROM okta.expire_password\n  WHERE userId=@id\n  AND tempPassword=false\n"
         }
