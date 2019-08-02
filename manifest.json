@@ -4,6 +4,9 @@
       "dependencies": [{
         "name": "transposit/okta:v1.*.*",
         "alias": "okta"
+      }, {
+        "name": "transposit/twilio:v1.*.*",
+        "alias": "twilio"
       }],
       "operations": [{
         "id": "list_users",
