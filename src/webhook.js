@@ -7,7 +7,7 @@
       if (users[i].profile.mobilePhone != null) {
         api.run('this.send_message', {sid: env.get("sid"),
                                       recipient: users[i].profile.mobilePhone,
-                                      phonenum: env.get("phonenum")});
+                                      phonenum: `+1${env.get("phonenum")}`});
       }
   	} 
   }
