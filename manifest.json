@@ -71,6 +71,10 @@
         "name": "sid",
         "description": "Your Twilio Account SID",
         "type": "STRING"
+      }, {
+        "name": "phonenum",
+        "description": "Your Twilio Phone Number",
+        "type": "STRING"
       }]
     }
   }
