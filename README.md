@@ -6,7 +6,9 @@ By using webhooks, we can have Twilio call a function in Transposit with the tex
 
 `expire_password`: Expires the Okta password of a given user, forcing them to reset.
 
-`list_users`: Returns all users of an Okta organization
+`list_users`: Returns all users of an Okta organization.
+
+`send_message`: Sends a text notification to all users with numbers on record that their password was expired.
 
 `webhook`: The function that is called when Twilio receives a text, which passes in the content to the respective places.
 
