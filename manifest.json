@@ -11,7 +11,7 @@
       "operations": [{
         "id": "list_users",
         "tql": {
-          "tql": "SELECT id FROM okta.list_users\n"
+          "tql": "SELECT * FROM okta.list_users\n"
         }
       }, {
         "id": "expire_password",
@@ -37,6 +37,21 @@
         "access": {
           "requireApiKey": true,
           "webhook": true
+        }
+      }, {
+        "id": "send_message",
+        "tql": {
+          "parameters": [{
+            "name": "sid",
+            "type": "STRING"
+          }, {
+            "name": "recipient",
+            "type": "STRING"
+          }, {
+            "name": "phonenum",
+            "type": "STRING"
+          }],
+          "tql": "SELECT * FROM twilio.send_message\n  WHERE mediaTypeExtension='.json'\n  AND AccountSid=@sid\n  AND $body=(SELECT {\n    'To' : @recipient,\n    'From' : @phonenum,\n    'Body' : \"Your Okta password has been expired. Please reset it by logging in to your Okta organization.\"\n  })\n"
         }
       }],
       "dataConnections": [{
