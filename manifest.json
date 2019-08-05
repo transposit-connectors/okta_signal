@@ -76,6 +76,6 @@
       }]
     },
     "description": "A demo app that users Twilio to organize an Okta organization.",
-    "displayName": "SIGNAL Okta Demo"
+    "displayName": "Okta Twilio Demo"
   }
 }
