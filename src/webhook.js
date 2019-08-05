@@ -9,7 +9,7 @@
         // If there is a phone number on record, let them know
         api.run('this.send_message', {sid: env.get("sid"),
                                       recipient: users[i].profile.mobilePhone,
-                                      phonenum: `+1${env.get("phonenum")}`});
+                                      phonenum: `+1${env.get("phonenum")}`});	// Change the +1 to the correct country code if needed.
       }
   	} 
   }
