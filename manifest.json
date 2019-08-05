@@ -9,12 +9,8 @@
         "alias": "twilio"
       }],
       "operations": [{
-        "id": "list_users",
-        "tql": {
-          "tql": "SELECT * FROM okta.list_users\n"
-        }
-      }, {
         "id": "expire_password",
+        "description": "Expires Okta passwords for all users in an organization.",
         "tql": {
           "parameters": [{
             "name": "id",
@@ -24,6 +20,7 @@
         }
       }, {
         "id": "webhook",
+        "description": "The function that is called with Twilio recieves a text",
         "function": {
           "parameters": [{
             "name": "http_event",
@@ -40,6 +37,7 @@
         }
       }, {
         "id": "send_message",
+        "description": "Sends a text to all users that their password was reset.",
         "tql": {
           "parameters": [{
             "name": "sid",

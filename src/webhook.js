@@ -1,6 +1,6 @@
 ({ http_event }) => {
   let body = http_event.parsed_body;
-  let users = api.run("this.list_users");
+  let users = api.run("okta.list_users");
   if (body.Body.trim().toLowerCase() == 'code red') {
     for (let i = 0; i < users.length; i++) {
       // Loop through and expire all passwords
