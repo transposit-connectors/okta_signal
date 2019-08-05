@@ -20,7 +20,7 @@
         }
       }, {
         "id": "webhook",
-        "description": "The function that is called with Twilio recieves a text",
+        "description": "The function that is called with Twilio recieves a text.",
         "function": {
           "parameters": [{
             "name": "http_event",
