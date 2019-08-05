@@ -10,4 +10,8 @@ By using webhooks, we can have Twilio call a function in Transposit with the tex
 
 `webhook`: The function that is called when Twilio receives a text, which passes in the content to the respective places.
 
+## Expansion Ideas
+
+This is one example of organization management with Twilio and Okta. Look for more API calls for your Okta organization that you might want to invoke with a text message,
+
 [Click here to find more examples using Transposit!](https://www.transposit.com/apps/)
