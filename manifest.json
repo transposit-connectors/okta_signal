@@ -75,7 +75,7 @@
         "type": "STRING"
       }]
     },
-    "description": "A demo app that users Twilio to organize an Okta organization.",
+    "description": "Reset all passwords in your Okta organization by sending a text with Twilio.",
     "displayName": "Okta Twilio Demo"
   }
 }
