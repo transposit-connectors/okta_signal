@@ -1,4 +1,4 @@
-# SIGNAL 2019 Okta App
+# Okta Twilio Demo
 
 An app that uses [Twilio](https://www.twilio.com/) and [Okta](https://www.okta.com/) together to demo the [Transposit](https://transposit.com) platform by expiring all passwords on a user organization.
 
