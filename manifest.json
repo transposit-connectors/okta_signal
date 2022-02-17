@@ -1,79 +1,98 @@
 {
   "v2": {
     "transposit": {
-      "dependencies": [{
-        "name": "transposit/okta:v1.*.*",
-        "alias": "okta"
-      }, {
-        "name": "transposit/twilio:v1.*.*",
-        "alias": "twilio"
-      }],
-      "operations": [{
-        "id": "expire_password",
-        "description": "Expires Okta passwords for all users in an organization.",
-        "tql": {
-          "parameters": [{
-            "name": "id",
-            "type": "STRING"
-          }],
-          "tql": "SELECT * FROM okta.expire_password\n  WHERE userId=@id\n  AND tempPassword=false\n"
-        }
-      }, {
-        "id": "webhook",
-        "description": "The function that is called with Twilio recieves a text.",
-        "function": {
-          "parameters": [{
-            "name": "http_event",
-            "default": {
-              "text": "{\"http_method\": \"GET\", \"query_parameters\": {}, \"headers\": {}, \"body\": \"\"}"
-            },
-            "type": "OBJECT"
-          }],
-          "js": "webhook.js"
+      "dependencies": [
+        {
+          "name": "transposit/okta:v1.*.*",
+          "alias": "okta"
         },
-        "access": {
-          "requireApiKey": true,
-          "webhook": true
+        {
+          "name": "transposit/twilio:v1.*.*",
+          "alias": "twilio"
         }
-      }, {
-        "id": "send_message",
-        "description": "Sends a text to all users that their password was reset.",
-        "tql": {
-          "parameters": [{
-            "name": "sid",
-            "type": "STRING"
-          }, {
-            "name": "recipient",
-            "type": "STRING"
-          }, {
-            "name": "phonenum",
-            "type": "STRING"
-          }],
-          "tql": "SELECT * FROM twilio.send_message\n  WHERE mediaTypeExtension='.json'\n  AND AccountSid=@sid\t\t-- Set in environment variables\n  AND $body=(SELECT {\n    'To' : @recipient,\n    'From' : @phonenum,\t\t-- Set in environment variables\n    'Body' : \"Your Okta password has been expired. Please reset it by logging in to your Okta organization.\"\n  })\n"
+      ],
+      "operations": [
+        {
+          "id": "expire_password",
+          "description": "Expires Okta passwords for all users in an organization.",
+          "tql": {
+            "parameters": [
+              {
+                "name": "id",
+                "type": "STRING"
+              }
+            ],
+            "tql": "SELECT * FROM okta.expire_password\n  WHERE userId=@id\n  AND tempPassword=false\n"
+          }
+        },
+        {
+          "id": "webhook",
+          "description": "The function that is called with Twilio recieves a text.",
+          "function": {
+            "parameters": [
+              {
+                "name": "http_event",
+                "default": {
+                  "text": "{\"http_method\": \"GET\", \"query_parameters\": {}, \"headers\": {}, \"body\": \"\"}"
+                },
+                "type": "OBJECT"
+              }
+            ],
+            "js": "webhook.js"
+          },
+          "access": {
+            "requireApiKey": true,
+            "webhook": true
+          }
+        },
+        {
+          "id": "send_message",
+          "description": "Sends a text to all users that their password was reset.",
+          "tql": {
+            "parameters": [
+              {
+                "name": "sid",
+                "type": "STRING"
+              },
+              {
+                "name": "recipient",
+                "type": "STRING"
+              },
+              {
+                "name": "phonenum",
+                "type": "STRING"
+              }
+            ],
+            "tql": "SELECT * FROM twilio.send_message\n  WHERE mediaTypeExtension='.json'\n  AND AccountSid=@sid\t\t-- Set in environment variables\n  AND $body=(SELECT {\n    'To' : @recipient,\n    'From' : @phonenum,\t\t-- Set in environment variables\n    'Body' : \"Your Okta password has been expired. Please reset it by logging in to your Okta organization.\"\n  })\n"
+          }
         }
-      }],
-      "dataConnections": [{
-        "ref": "okta.raw",
-        "overrides": {
-          "swagger": {
-            "baseUrl": "https://dev-470144-admin.okta.com",
-            "executionLimits": {
+      ],
+      "dataConnections": [
+        {
+          "ref": "okta.raw",
+          "overrides": {
+            "swagger": {
+              "baseUrl": "https://dev-470144-admin.okta.com",
+              "executionLimits": {}
             }
           }
         }
-      }],
+      ],
       "javascriptAPIVersion": "3",
       "source": "src",
       "userSettingsDisplay": "GENERATED",
-      "appSettings": [{
-        "name": "sid",
-        "description": "Your Twilio Account SID",
-        "type": "STRING"
-      }, {
-        "name": "phonenum",
-        "description": "Your Twilio phone number in the format \"+15555555555\"",
-        "type": "STRING"
-      }]
+      "appSettings": [
+        {
+          "name": "sid",
+          "description": "Your Twilio Account SID",
+          "type": "STRING"
+        },
+        {
+          "name": "phonenum",
+          "description": "Your Twilio phone number in the format \"+15555555555\"",
+          "type": "STRING"
+        }
+      ]
     },
     "description": "Reset all passwords in your Okta organization by sending a text with Twilio.",
     "displayName": "Okta Twilio Demo"
